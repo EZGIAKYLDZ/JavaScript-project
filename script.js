@@ -8,7 +8,7 @@ function getData() {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "v1.formula-1.api-sports.io",
-            "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
+            "x-rapidapi-key": "6bc1f53da294d6df9decc7802ac61c7b"
         }
     })
 
@@ -17,45 +17,40 @@ function getData() {
             response.map(data => {
                 const ranking = data['response'];
 
-                ranking.map(match => {
-                    const driver = match['driver'];
-                    const team = match['team'];
+                const pos = document.createElement('p');
+                pos.innerText = ranking.position;
+
+                const driverName = document.createElement('h2');
+                driverName.innerText = driver.name;
+
+                const car = document.createElement('p');
+                car.innerText = team.name;
+
+                const listItem = document.createElement('li');
+                listItem.setAttribute('data-id', ranking.id);
+                listItem.append(driverName);
+                listItem.append(car);
+                listItem.append(pos);
+
+                document.getElementById('posts-list').append(listItem);
 
 
-                    const pos = document.createElement('p');
-                    pos.innerText = ranking.position;
+                // const tableBody = document.querySelector('#dataTable tbody');
+                //     const tableRows = data.map(user => {
+                //         return `
+                //             <tr>
+                //                 <td>${user.name}</td>
+                //                 <td>${user.age}</td>
+                //                 <td>${user.email}</td>
+                //             </tr>
+                //         `;
+                //     });
 
-                    const driverName = document.createElement('h2');
-                    driverName.innerText = driver.name;
+                //     tableBody.innerHTML = tableRows.join('');
 
-                    const car = document.createElement('p');
-                    car.innerText = team.name;  
-
-                    const listItem = document.createElement('li');
-                    listItem.setAttribute('data-id', ranking.id);
-                    listItem.append(driverName);
-                    listItem.append(car);
-                    listItem.append(pos);
-
-                    document.getElementById('posts-list').append(listItem);
-
-
-                    // const tableBody = document.querySelector('#dataTable tbody');
-                    //     const tableRows = data.map(user => {
-                    //         return `
-                    //             <tr>
-                    //                 <td>${user.name}</td>
-                    //                 <td>${user.age}</td>
-                    //                 <td>${user.email}</td>
-                    //             </tr>
-                    //         `;
-                    //     });
-
-                    //     tableBody.innerHTML = tableRows.join('');
-
-                })
             })
-        }).catch(error => {
+        })
+        .catch(error => {
             console.error('Error fetching data:', error);
         });
 }
