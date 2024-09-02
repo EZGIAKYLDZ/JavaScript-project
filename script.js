@@ -29,7 +29,7 @@ function getData() {
                     driverName.innerText = driver.name;
 
                     const car = document.createElement('p');
-                    car.innerText = team.name;
+                    car.innerText = team.name;  
 
                     const listItem = document.createElement('li');
                     listItem.setAttribute('data-id', ranking.id);
