@@ -13,7 +13,7 @@ function getData() {
             "x-rapidapi-key": KEY
         }
     })
-        .then(response => response.json()) // JSON formatında yanıt bekleniyor
+        .then(response => response.json()) 
         .then(data => {
             console.log(data);
             const ranking = data['response'];
