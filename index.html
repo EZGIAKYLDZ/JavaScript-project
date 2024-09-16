@@ -17,10 +17,10 @@
     <nav id="nav-bar">
 
         <ul class="nav-list">
-            <li class="nav-link" id="schedule"><a href="">Schedule</a></li>
-            <li class="nav-link" id="results"><a href="">Results</a></li>
-            <li class="nav-link" id="drivers"><a href="drivers/drivers.html">Drivers</a></li>
-            <li class="nav-link" id="teams"><a href="">Teams</a></li>
+            <li class="nav-link" id="schedule"><a class="schedule hover" href="">Schedule</a></li>
+            <li class="nav-link" id="results"><a class="results hover" href="">Results</a></li>
+            <li class="nav-link" id="drivers"><a class="drivers hover" href="drivers/drivers.html">Drivers</a> </li>
+            <li class="nav-link" id="teams"><a class="teams hover" href="">Teams</a></li>
         </ul>
 
         <div class="btn-container">
@@ -32,23 +32,23 @@
 </header>
 
 <body>
-    <h1>Driver Standing</h1>
-    <div id="drivers-standings"></div>
+    <div id="drivers-standings">
 
-    <ul id="posts-list"></ul>
+        <h1>Driver Standing</h1>
 
-    <table id="dataTable">
-        <thead>
-            <tr>
-                <th>POS</th>
-                <th>DRIVER</th>
-                <th>NATIONALITY</th>
-                <th>CAR</th>
-                <th>POINTS</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>POS</th>
+                    <th>DRIVER</th>
+                    <th>TEAM</th>
+                    <th>POINTS</th>
+                    <th>WINS</th>
+                </tr>
+            </thead>
+            <!-- <tbody ></tbody> -->
+        </table>
+    </div>
 
     <script src="script.js"></script>
 </body>

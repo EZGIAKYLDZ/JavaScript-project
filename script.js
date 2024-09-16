@@ -1,83 +1,54 @@
 
-const URL = 'https://v1.formula-1.api-sports.io/rankings/drivers?=2019';
-const KEY= '6bc1f53da294d6df9decc7802ac61c7b';
+const URL = 'https://v1.formula-1.api-sports.io/rankings/drivers?season=2019';
+const KEY = '6bc1f53da294d6df9decc7802ac61c7b';
 
 document.addEventListener('DOMContentLoaded', getData);
 
 function getData() {
     console.log('çalıştı');
-    fetch(URL , {
+    fetch(URL, {
         "method": "GET",
-            "headers": {
+        "headers": {
             "x-rapidapi-host": "v1.formula-1.api-sports.io",
-                "x-rapidapi-key": KEY
+            "x-rapidapi-key": KEY
         }
     })
-    .then (response => response.json)
-    .then(response => {
-        console.log('ilk response ', response);
-        console.log('ikinci: ', response[response])
+        .then(response => response.json()) // JSON formatında yanıt bekleniyor
+        .then(data => {
+            console.log(data);
+            const ranking = data['response'];
 
-        // response.response.map (data =>
-        //     console.log('ikinci: ', data)
-        // )
-    } 
+            ranking.forEach(element => {
+                const position = element['position'];
+                const driver = element['driver'];
+                const team = element['team'];
+                const points = element['points'];
+                const wins = element['wins'];
 
-)
-    .catch(err=>console.log('err' , err))
+                const listRankings = document.createElement('tbody')
+                listRankings.setAttribute('data-id', driver.id);
+                listRankings.innerHTML = `
+                            <tr>
+                                <td>${position}</td>
+                                <td>${driver.name}</td>
+                                <td>${team.name}</td>
+                                <td>${points}</td>
+                                <td>${wins}</td>
+                            </tr>
+                        `;
+                document.getElementById('dataTable').append(listRankings);
+            })
+        })
+
+        .catch(err => {
+            console.log(err);
+        });
 
 }
 
-// function getData() {
-//     fetch(URL, {
-//         "method": "GET",
-//         "headers": {
-//             "x-rapidapi-host": "v1.formula-1.api-sports.io",
-//             "x-rapidapi-key": KEY
-//         }
-//     })
-
-//         .then((response) => response.json())
-        // .then((response) => {
-        //     response.response.map(data => {
-        //         const ranking = data['response'];
-
-        //         const pos = document.createElement('p');
-        //         pos.innerText = ranking.position;
-
-        //         const driverName = document.createElement('h2');
-        //         driverName.innerText = driver.name;
-
-        //         const car = document.createElement('p');
-        //         car.innerText = team.name;
-                
-        //         const listItem = document.createElement('li');
-        //         listItem.setAttribute('data-id', ranking.id);
-        //         listItem.append(driverName);
-        //         listItem.append(car);
-        //         listItem.append(pos);
-
-        //         document.getElementById('posts-list').append(listItem);
-
-
-                // const tableBody = document.querySelector('#dataTable tbody');
-                //     const tableRows = data.map(user => {
-                //         return `
-                //             <tr>
-                //                 <td>${user.name}</td>
-                //                 <td>${user.age}</td>
-                //                 <td>${user.email}</td>
-                //             </tr>
-                //         `;
-                //     });
-
-                //     tableBody.innerHTML = tableRows.join('');
-
-        //     })
-        // })
-//         .catch(error => {
-//             console.error('Error data:', error);
-//         });
-// }
-
+const deneme = document.querySelector('.drivers');
+function func() {
+    deneme.style.backgroundColor = 'black';
+}
+deneme.addEventListener('mouseover', func);
 
